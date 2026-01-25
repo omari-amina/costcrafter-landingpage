@@ -13,21 +13,41 @@
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tally Code -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
 
     <style>
         :root {
-            --primary: #0a192f;
-            /* Dark Navy */
-            --secondary: #112240;
-            /* Lighter Navy for cards */
-            --accent: #fbbf24;
-            /* Gold */
-            --accent-hover: #d97706;
-            --text-light: #e2e8f0;
-            --text-muted: #94a3b8;
+            /* الألوان الأساسية - نوى */
+            --primary: #310b82;
+            /* البنفسجي العميق - الخلفية الرئيسية */
+            --primary-dark: #1f0552;
+            /* درجة أدكن للتباين */
+            --secondary: rgba(76, 29, 176, 0.4);
+            /* بنفسجي فاتح - شفاف للزجاج */
+
+            --accent: #eeb32a;
+            /* الذهبي الدافئ - للأزرار والأكشن */
+            --accent-glow: rgba(238, 179, 42, 0.4);
+            /* توهج ذهبي */
+
+            --text-light: #ffffff;
+            --text-muted: #dcd3ee;
+            /* لون نص ثانوي أفتح للقراءة على الخلفية الداكنة */
+
             --danger: #ef4444;
             --success: #10b981;
-            --gradient: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+
+            /* تدرج الخلفية الاحترافي */
+            --gradient-bg: radial-gradient(circle at 50% 0%, #4c1db0 0%, #310b82 60%, #1a0247 100%);
+
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --font-main: 'Cairo', sans-serif;
         }
 
         * {
@@ -37,10 +57,21 @@
             font-family: 'Cairo', sans-serif;
         }
 
+        html,
         body {
-            background-color: var(--primary);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            background: var(--primary);
+            background-image: var(--gradient-bg);
+            background-attachment: fixed;
+            /* Parallax effect */
             color: var(--text-light);
-            line-height: 1.6;
+            line-height: 1.7;
+            /* مسافات أفضل للقراءة */
+            font-family: var(--font-main);
             overflow-x: hidden;
         }
 
@@ -69,15 +100,15 @@
 
         @keyframes pulse-gold {
             0% {
-                box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4);
+                box-shadow: 0 0 0 0 rgba(238, 179, 42, 0.5);
             }
 
             70% {
-                box-shadow: 0 0 0 15px rgba(251, 191, 36, 0);
+                box-shadow: 0 0 0 15px rgba(238, 179, 42, 0);
             }
 
             100% {
-                box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+                box-shadow: 0 0 0 0 rgba(238, 179, 42, 0);
             }
         }
 
@@ -93,12 +124,17 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 25, 47, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            /* Slightly stronger shadow for separation */
+            transition: all 0.3s ease;
         }
+
+        /* Optional: Shrink header on scroll could be added via JS, but base style starts here */
 
         .container {
             max-width: 1200px;
@@ -113,14 +149,25 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--text-light);
+            display: flex;
+            align-items: center;
         }
 
-        .logo span {
-            color: var(--accent);
+        .logo img {
+            height: 60px;
+            /* Increased size for better visibility */
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s;
         }
+
+        .logo:hover img {
+            transform: scale(1.05);
+            /* Subtle zoom on hover */
+        }
+
+        /* Hide text part of logo since we use image now, or keep it if requested. 
+           User asked "put logo", allowing image only is safer for now */
 
         .nav-links {
             display: flex;
@@ -128,13 +175,32 @@
         }
 
         .nav-links a {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+            transition: 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         .btn-cta {
@@ -143,7 +209,7 @@
             padding: 0.6rem 1.5rem;
             border-radius: 50px;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+            box-shadow: 0 4px 15px rgba(238, 179, 42, 0.4);
             transition: transform 0.2s;
         }
 
@@ -154,38 +220,52 @@
 
         /* --- Hero Section --- */
         .hero {
-            padding-top: 140px;
-            padding-bottom: 80px;
+            padding-top: 160px;
+            padding-bottom: 100px;
             text-align: center;
-            background: radial-gradient(circle at center, #172a45 0%, var(--primary) 70%);
+            position: relative;
+            /* Subtle texture overlay could be added here */
         }
 
         .hero h1 {
-            font-size: 3rem;
-            line-height: 1.2;
+            font-size: 3.5rem;
+            line-height: 1.3;
             margin-bottom: 1.5rem;
             color: #fff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .hero h1 span {
+        .hero h1 .highlight {
             color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Effect for the specific word "Hidden Costs" */
+        .hero h1 .danger-highlight {
+            color: #ff6b6b;
+            /* Red-ish for danger */
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 107, 107, 0.4);
+            text-underline-offset: 8px;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
+            max-width: 750px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
         }
 
         .video-container {
             width: 100%;
             max-width: 800px;
             margin: 3rem auto;
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-xl);
+            border: 2px solid rgba(238, 179, 42, 0.3);
             position: relative;
             background: #000;
         }
@@ -245,70 +325,98 @@
 
         /* --- Pain Points --- */
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
             font-weight: 800;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title span {
             border-bottom: 4px solid var(--accent);
             padding-bottom: 5px;
+            display: inline-block;
         }
 
         .pain-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
         }
 
         .pain-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 12px;
+            background: var(--glass-bg);
             border: 1px solid rgba(239, 68, 68, 0.2);
+            /* Red tint for pain */
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
             transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Subtle Red Glow on Hover */
         .pain-card:hover {
-            transform: translateY(-5px);
-            background: rgba(239, 68, 68, 0.05);
+            transform: translateY(-8px);
+            background: rgba(239, 68, 68, 0.08);
+            /* Stronger red tint */
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.4);
         }
 
         .pain-card i {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--danger);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 10px rgba(239, 68, 68, 0.3));
         }
 
         .pain-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #fff;
         }
 
         .pain-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* --- Solution/Features --- */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
         .feature-card {
             background: var(--secondary);
             padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            border: var(--glass-border);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Highlight specific cards */
+        .feature-card.highlight-card {
+            border: 1px solid var(--accent);
+            background: linear-gradient(145deg, rgba(76, 29, 176, 0.6), rgba(238, 179, 42, 0.05));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .feature-card::before {
@@ -316,117 +424,182 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
-            height: 100%;
+            width: 100%;
+            height: 4px;
+            /* Top border instead of side */
             background: var(--accent);
+            opacity: 0.7;
         }
 
         .feature-card i {
             display: inline-block;
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
             text-align: center;
-            background: rgba(251, 191, 36, 0.1);
+            background: rgba(238, 179, 42, 0.1);
             color: var(--accent);
-            border-radius: 12px;
-            font-size: 1.5rem;
+            border-radius: 20px;
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover i {
+            background: var(--accent);
+            color: var(--primary);
+            transform: scale(1.1) rotate(-5deg);
         }
 
         .feature-card h3 {
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            color: #fff;
         }
 
-        /* --- Steps --- */
+        /* --- Steps (How it works) --- */
         .steps-container {
             display: flex;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
+            margin-top: 3rem;
         }
 
         .step-item {
             flex: 1;
             min-width: 250px;
-            background: var(--secondary);
-            padding: 2rem;
-            border-radius: 12px;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
             text-align: center;
             position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .step-num {
-            width: 40px;
-            height: 40px;
-            background: var(--accent);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
             color: var(--primary);
-            font-weight: bold;
+            font-weight: 900;
             border-radius: 50%;
-            line-height: 40px;
-            margin: 0 auto 1rem;
-            font-size: 1.2rem;
+            line-height: 50px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px var(--accent-glow);
         }
 
-        /* --- Pricing --- */
+        .step-item h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Pricing (The Golden Ticket) --- */
         .pricing-card {
-            background: linear-gradient(145deg, #112240, #0d1b33);
-            max-width: 500px;
+            background: radial-gradient(circle at top right, rgba(49, 11, 130, 0.9), rgba(10, 25, 47, 0.95));
+            backdrop-filter: blur(20px);
+            max-width: 550px;
             margin: 0 auto;
-            border-radius: 20px;
-            padding: 3rem;
+            border-radius: var(--radius-xl);
+            padding: 4rem 3rem;
             text-align: center;
             border: 2px solid var(--accent);
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.1);
+            box-shadow: 0 0 60px rgba(238, 179, 42, 0.15), inset 0 0 20px rgba(238, 179, 42, 0.05);
+            /* Outer and Inner glow */
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Gold sheen effect */
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(238, 179, 42, 0.1) 60deg, transparent 120deg);
+            animation: rotate 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .badge {
             position: absolute;
-            top: -15px;
+            top: 0;
             right: 50%;
             transform: translateX(50%);
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), #ffcd57, var(--accent));
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
             color: var(--primary);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            border-radius: 0 0 20px 20px;
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            white-space: nowrap;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
         }
 
         .price-old {
             text-decoration: line-through;
-            color: var(--text-muted);
-            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
         }
 
         .price-new {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 900;
             color: #fff;
-            margin: 10px 0;
+            margin: 0;
+            line-height: 1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .price-new span {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: var(--accent);
+            font-weight: 700;
         }
 
         .features-list {
             text-align: right;
-            margin: 2rem 0;
+            margin: 2.5rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
         }
 
         .features-list li {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .features-list li:last-child {
+            margin-bottom: 0;
         }
 
         .features-list i {
-            color: var(--success);
+            color: var(--accent);
+            /* Matches checkmarks to gold/accent */
+            font-size: 1.2rem;
         }
 
         .payment-icons img {
@@ -439,10 +612,18 @@
 
         /* --- FAQ --- */
         .faq-item {
-            background: var(--secondary);
+            background: var(--glass-bg);
+            border: var(--glass-border);
             margin-bottom: 1rem;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .faq-question {
@@ -452,6 +633,7 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 700;
+            color: #fff;
         }
 
         .faq-question:hover {
@@ -477,32 +659,56 @@
 
         /* --- Footer --- */
         footer {
-            background: #020c1b;
-            padding: 4rem 0;
+            background: #0f022b;
+            /* Very Dark Purple */
+            padding: 5rem 0 3rem;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .footer-logo img {
+            height: 70px;
+            width: auto;
+            margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
+            /* Make logo white if it's colored, or keep natural if suitable */
+        }
+
+        /* If original logo has white text, remove filter. Assuming transparent PNG. */
+
+        .socials {
+            margin-bottom: 2rem;
         }
 
         .socials a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            line-height: 40px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
             border-radius: 50%;
-            margin: 0 5px;
+            margin: 0 8px;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
         }
 
         .socials a:hover {
             background: var(--accent);
             color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
         }
 
         /* Floating Button */
         .floating-btn {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            left: 30px;
+            /* Moved to left to avoid overlapping with Chatwoot */
             background: #229ED9;
             width: 60px;
             height: 60px;
@@ -540,7 +746,9 @@
     <!-- Header -->
     <header>
         <div class="container nav-content">
-            <a href="#" class="logo">Nawa<span>EduTech</span></a>
+            <a href="#" class="logo">
+                <img src="images/nawa_logo.png" alt="Nawa Logo">
+            </a>
             <nav class="nav-links">
                 <a href="#features">المميزات</a>
                 <a href="#pricing">الأسعار</a>
@@ -552,19 +760,25 @@
     </header>
 
     <!-- Hero Section -->
+    <!-- Hero Section -->
     <section class="hero reveal">
         <div class="container">
-            <h1>لا تتركِ أرباحكِ تضيع في <br> <span>"التكاليف الخفية"!</span> 🛑</h1>
-            <p>البرنامج الجزائري الأول 🇩🇿 المصمم خصيصاً لأصحاب مشاريع الطباعة والأعمال اليدوية.<br>
-                احسبي تكلفة منتجك بالدينار، واديري مخزونك باحترافية، واضمني حقكِ بالمليم.</p>
+            <!-- New Powerful Copy -->
+            <h1>هل تعملين بجهد ليل نهار...<br> وتجدين <span class="danger-highlight">جيبك فارغاً</span> نهاية الشهر؟ 🛑
+            </h1>
+
+            <p>لا تتركي أرباحك تتسرب عبر "التكاليف الخفية".<br>
+                <strong style="color:white; font-weight:600;">CostCrafter Pro</strong> هو محاسبكِ الشخصي الذي يضمن لكِ
+                حقكِ بالدينار، ويحمي مجهودك من الضياع.
+            </p>
 
             <div class="hero-btns">
                 <a href="#pricing" class="btn-primary-lg">
-                    احصل على البرنامج الآن - 3000دج
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    أوقفي الخسارة وابدئي الربح الآن
+                    <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <a href="#video-demo" class="btn-secondary-lg">
-                    شاهد كيف يعمل
+                    كيف يسرقون جهدك؟ (فيديو)
                     <i class="fa-solid fa-play"></i>
                 </a>
             </div>
@@ -572,101 +786,118 @@
             <!-- Video Placeholder -->
             <div id="video-demo" class="video-container">
                 <div class="video-wrapper">
-                    <!-- Replace with your actual video file path relative to this file -->
-                    <video controls poster="../CostCrafter_Commercial/output/CostCrafter_Commercial_WithSFX.mp4">
-                        <source src="../CostCrafter_Reel_FINAL.mp4" type="video/mp4">
+                    <video controls poster="" style="box-shadow: 0 0 50px rgba(49, 11, 130, 0.5);">
+                        <source src="../video_costcrafter.mp4" type="video/mp4">
                         المتصفح لا يدعم الفيديو.
                     </video>
                 </div>
             </div>
-            <div style="margin-top: 10px; font-size: 0.9rem; color: #fff; opacity: 0.7;">
-                <i class="fa-solid fa-shield-halved"></i> صُنع في الجزائر 🇩🇿
+            <div
+                style="margin-top: 15px; font-size: 0.95rem; color: var(--text-muted); display:flex; gap:20px; justify-content:center; align-items:center;">
+                <span><i class="fa-solid fa-shield-halved" style="color:var(--accent)"></i> ضمان استعادة المال</span>
+                <span><i class="fa-solid fa-users" style="color:var(--accent)"></i> انضمي لـ +500 حرفية ناجحة</span>
             </div>
         </div>
     </section>
 
-    <!-- Pain Points -->
-    <section class="section">
+    <!-- Pain Points (The Problem) -->
+    <section class="section" style="position: relative;">
+        <!-- Background element for visual interest -->
+        <div
+            style="position:absolute; top:20%; left:-5%; width:200px; height:200px; background:var(--accent); filter:blur(150px); opacity:0.1; z-index:-1;">
+        </div>
+
         <div class="container">
-            <h2 class="section-title"><span>هل تعانين من هذه المشاكل؟</span> 🤔</h2>
+            <h2 class="section-title"><span>لماذا تخسرين المال دون أن تشعري؟</span> 💸</h2>
             <div class="pain-grid">
                 <div class="pain-card">
-                    <i class="fa-solid fa-money-bill-wave"></i>
-                    <h3>التسعير العشوائي</h3>
-                    <p>تبيعين كثيراً ولكن جيبك فارغ في نهاية الشهر؟</p>
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <h3>التسعير العاطفي</h3>
+                    <p>هل تبيعين بسعر "رخيص" خوفاً من خسارة الزبون؟ هذه هي أسرع طريقة للإفلاس.</p>
                 </div>
                 <div class="pain-card">
                     <i class="fa-solid fa-print"></i>
-                    <h3>خسارة الآلات</h3>
-                    <p>هل تحسبين حق الطابعة التي ستتعطل بعد عام، أم ستدفعين ثمنها من جيبك؟</p>
+                    <h3>"فخ" الطابعة</h3>
+                    <p>الطابعة التي اشتريتها بـ 4 ملايين، هل تحسبين "حقها" في كل ورقة؟ أم أنها هدية للزبون؟</p>
                 </div>
                 <div class="pain-card">
-                    <i class="fa-solid fa-boxes-stacked"></i>
-                    <h3>فوضى المخزون</h3>
-                    <p>تتفاجئين بنفاذ الورق أو الحبر في منتصف طلبية مستعجلة؟</p>
+                    <i class="fa-solid fa-trash-can"></i>
+                    <h3>الهدر الخفي</h3>
+                    <p>الورقة التي تطبعينها خطأً، والحبر الذي يجف... من يدفع ثمنه؟ (أنتِ!)</p>
                 </div>
                 <div class="pain-card">
-                    <i class="fa-solid fa-hourglass-half"></i>
-                    <h3>ضياع الجهد</h3>
-                    <p>هل تأخذين حق وقوفكِ وتعبكِ في القص والتركيب؟</p>
+                    <i class="fa-solid fa-clock"></i>
+                    <h3>وقتكِ = 0 دج؟</h3>
+                    <p>تقضين 3 ساعات في التصميم والقص، ثم لا تحسبين أجرك؟ أنتِ موظفة مجانية!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
+    <!-- Features (The Solution) -->
     <section id="features" class="section">
         <div class="container">
-            <h2 class="section-title"><span>حولنا "علم المصانع" إلى برنامج بسيط</span> 💎</h2>
+            <div style="text-align:center; margin-bottom:3rem;">
+                <span
+                    style="background:rgba(238, 179, 42, 0.1); color:var(--accent); padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.9rem;">الحل
+                    الجذري</span>
+                <h2 class="section-title" style="margin-top:15px; margin-bottom:1rem;">CostCrafter: ليس مجرد برنامج.. هو
+                    شريكك المالي 💎</h2>
+                <p style="color:var(--text-muted); max-width:600px; margin:0 auto;">حولنا قواعد "محاسبة الشركات الكبرى"
+                    إلى برنامج بسيط يفهمه أي شخص.</p>
+            </div>
+
             <div class="features-grid">
-                <div class="feature-card">
+                <!-- Highlighted Feature -->
+                <div class="feature-card highlight-card">
                     <i class="fa-solid fa-calculator"></i>
-                    <h3>منطق الطباعة الذكي</h3>
-                    <p>حساب دقيق لاستهلاك الحبر والآلة حسب الجودة (نص vs صور) – لن تخسري في الحبر الأصلي بعد اليوم!</p>
+                    <h3>خوارزمية الحبر الذكية</h3>
+                    <p>البرنامج الوحيد الذي يحسب "قطرة الحبر" بدقة حسب نوع التصميم (صورة ملونة vs نص أسود). لن تخسري
+                        فلساً واحداً!</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-arrow-trend-down"></i>
-                    <h3>حساب الإهلاك (Amortization)</h3>
-                    <p>البرنامج يحسب أوتوماتيكياً قسط "رأس الطابعة" و"الصيانة" في كل ورقة تبيعينها.</p>
+                    <i class="fa-solid fa-piggy-bank"></i>
+                    <h3>حاسبة الإهلاك (Amortization)</h3>
+                    <p>نقسم سعر الطابعة والمقص الحراري على عدد السنوات، ونضيف "قسطاً صغيراً" لكل منتج تبيعينه.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-warehouse"></i>
-                    <h3>إدارة مخزون ذكية</h3>
-                    <p>الخصم التلقائي للمواد عند كل عملية بيع، مع تنبيهات عند قرب النفاذ.</p>
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <h3>مخزنكِ تحت السيطرة</h3>
+                    <p>تنبيهات أوتوماتيكية قبل نفاذ الورق أو الحبر. لن تتوقفي عن العمل في منتصف الطلبية أبداً.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-palette"></i>
-                    <h3>تسعير التصميم</h3>
-                    <p>ميزة "توزيع التكلفة" للمنتجات التي تبيعينها بصفة متكررة (مثل البلانر والستيكرز).</p>
+                    <i class="fa-solid fa-tags"></i>
+                    <h3>تسعير المنتجات المتكررة</h3>
+                    <p>هل تبيعين "بلانر" أو "ستيكرز"؟ احسبي التكلفة مرة واحدة، وبيعي آلاف المرات بربح مضمون.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-lock"></i>
-                    <h3>أمان وخصوصية</h3>
-                    <p>يعمل بدون إنترنت (Offline)، وبياناتك محفوظة في جهازك فقط.</p>
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3>يعمل بدون إنترنت</h3>
+                    <p>بياناتكِ، أرباحكِ، وتفاصيل زبائنكِ محفوظة في جهازك الشخصي بأمان تام 100%.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- How it Works -->
-    <section id="how-it-works" class="section" style="background: rgba(255,255,255,0.02)">
+    <section id="how-it-works" class="section">
         <div class="container">
-            <h2 class="section-title"><span>ابدئي العمل في 3 خطوات بسيطة</span> 🚀</h2>
+            <h2 class="section-title"><span>كيف أبدأ في استخدام البرنامج؟</span> 🚀</h2>
             <div class="steps-container">
                 <div class="step-item">
                     <div class="step-num">1</div>
-                    <h3>الطلب</h3>
-                    <p>املئي استمارة الطلب وادفعي عبر Baridimob أو CCP.</p>
+                    <h3>اطلبي نسختك</h3>
+                    <p>املئي الاستمارة في الأسفل (أو تواصلي معنا) وادفعي عبر بريدي موب أو CCP.</p>
                 </div>
                 <div class="step-item">
                     <div class="step-num">2</div>
-                    <h3>الاستلام</h3>
-                    <p>سيصلك فوراً ملف يحتوي على رابط البرنامج وتدريب شامل.</p>
+                    <h3>استلمي فوراً</h3>
+                    <p>سيصلك رابط التحميل + فيديو شرح التثبيت + كود التفعيل الخاص بجهازك.</p>
                 </div>
                 <div class="step-item">
                     <div class="step-num">3</div>
-                    <h3>التفعيل</h3>
-                    <p>افتحي البرنامج، انسخي "رقم الجهاز"، وارسليه لنا عبر تيليجرام.</p>
+                    <h3>انطلقي!</h3>
+                    <p>ابدئي في حساب تكلفة منتجاتك وتجهيز طلبياتك باحترافية من اليوم الأول.</p>
                 </div>
             </div>
         </div>
@@ -675,40 +906,43 @@
     <!-- Pricing -->
     <section id="pricing" class="section">
         <div class="container">
-            <h2 class="section-title"><span>استثمار صغير.. لربح كبير</span> 💰</h2>
+            <h2 class="section-title"><span>سعر فستان واحد... راحة بال لسنة كاملة!</span> 💰</h2>
 
             <div class="pricing-card">
-                <div class="badge">الأكثر مبيعاً 🔥</div>
-                <h3>النسخة الاحترافية</h3>
-                <p style="color:var(--text-muted)">Lifetime License</p>
+                <div class="badge">🔥 العرض الأكثر طلباً</div>
+                <h3 style="font-size:2rem; margin-bottom:10px;">CostCrafter Pro</h3>
+                <p style="color:var(--text-muted); font-size:1.1rem;">ترخيص مدى الحياة (Lifetime License)</p>
+                <div style="margin:20px 0;"></div>
 
                 <div class="price-old">5000 DZD</div>
                 <div class="price-new">3000<span>دج</span></div>
+                <p style="font-size:0.9rem; opacity:0.7; margin-top:5px;">(دفعة واحدة فقط = استخدام للأبد)</p>
 
                 <ul class="features-list">
-                    <li><i class="fa-solid fa-check"></i> رخصة مدى الحياة لجهاز واحد</li>
-                    <li><i class="fa-solid fa-check"></i> تحديثات مجانية للمستقبل</li>
-                    <li><i class="fa-solid fa-check"></i> دخول حصري لقناة الشروحات</li>
-                    <li><i class="fa-solid fa-check"></i> دعم فني عبر تيليجرام</li>
+                    <li><i class="fa-solid fa-check-circle"></i> نسخة كاملة لجهاز كمبيوتر واحد</li>
+                    <li><i class="fa-solid fa-check-circle"></i> حساب دقيق للحبر + الورق + الإهلاك</li>
+                    <li><i class="fa-solid fa-check-circle"></i> تحديثات مجانية للمزايا الجديدة</li>
+                    <li><i class="fa-solid fa-check-circle"></i> دعم فني مباشر عبر واتساب/تيليجرام</li>
                 </ul>
 
                 <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
 
-                <p style="margin-bottom: 10px;">طرق الدفع المتاحة:</p>
+                <p style="margin-bottom: 10px; font-weight:bold;">طرق الدفع الآمنة:</p>
                 <div class="payment-icons">
-                    <span
-                        style="font-weight:bold; background:white; color:#333; padding:5px 10px; border-radius:4px;">CCP</span>
-                    <span
-                        style="font-weight:bold; background:white; color:#333; padding:5px 10px; border-radius:4px;">BaridiMob</span>
+                    <div
+                        style="display:inline-flex; align-items:center; gap:10px; background:white; padding:5px 15px; border-radius:8px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Alg%C3%A9rie_Poste.svg/1200px-Alg%C3%A9rie_Poste.svg.png"
+                            style="height:25px; margin:0;" alt="CCP">
+                        <span style="color:#000; font-weight:bold;">CCP / BaridiMob</span>
+                    </div>
                 </div>
 
-                <a href="https://tally.so/r/placeholder" target="_blank" class="btn-primary-lg"
-                    style="width:100%; justify-content:center; margin-top:20px;">
-                    اطلبي نسختك الآن
-                </a>
-                <p style="font-size: 0.8rem; margin-top: 10px; color: var(--text-muted);">
-                    <i class="fa-solid fa-shield"></i> ضمان استعادة الاموال (مشروط)
-                </p>
+                <button data-tally-open="OD7dlA" data-tally-layout="modal" data-tally-overlay="1"
+                    data-tally-emoji-text="👋" data-tally-emoji-animation="wave" class="btn-primary-lg"
+                    style="width:100%; justify-content:center; margin-top:30px; border:none; cursor:pointer; font-size:1.4rem; padding:1.2rem;">
+                    احجزي نسختك الآن
+                    <i class="fa-solid fa-rocket"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -748,17 +982,23 @@
     </section>
 
     <!-- Footer -->
+    <!-- Footer -->
     <footer id="contact">
         <div class="container">
-            <h2 class="logo" style="margin-bottom: 20px;">Nawa<span>EduTech</span></h2>
+            <a href="#" class="footer-logo">
+                <!-- Ensure this logo path is correct -->
+                <img src="images/nawa_logo.png" alt="Nawa Logo" style="filter: brightness(0) invert(1);">
+            </a>
+
             <div class="socials">
                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/NawaSupport"><i class="fa-brands fa-telegram"></i></a>
             </div>
-            <p style="margin-top: 20px; color: var(--text-muted); font-size: 0.9rem;">
+
+            <p style="margin-top: 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
                 © 2026 NawaEduTech. جميع الحقوق محفوظة. <br>
-                صُمم بكل حب لدعم المشاريع الجزائرية 🇩🇿
+                صُمم في الجزائر 🇩🇿 لدعم الحرفيات المبدعات.
             </p>
         </div>
     </footer>
