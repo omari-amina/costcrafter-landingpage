@@ -749,36 +749,35 @@
             <a href="#" class="logo">
                 <img src="images/nawa_logo.png" alt="Nawa Logo">
             </a>
-            <nav class="nav-links">
-                <a href="#features">المميزات</a>
-                <a href="#pricing">الأسعار</a>
-                <a href="#how-it-works">طريقة التفعيل</a>
-                <a href="#contact">تواصل معنا</a>
-            </nav>
-            <a href="#pricing" class="btn-cta">اشتري الآن</a>
+
+            <ul class="nav-links">
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#pricing">سعر العرض</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+
+            <a href="#" class="btn-cta" onclick="startChallenge(); return false;">ابدأ تحدي التسعير 🤖</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <!-- Hero Section -->
+    <!-- Hero Section - تحدي التسعير -->
     <section class="hero reveal">
         <div class="container">
-            <!-- New Powerful Copy -->
-            <h1>هل تعملين بجهد ليل نهار...<br> وتجدين <span class="danger-highlight">جيبك فارغاً</span> نهاية الشهر؟ 🛑
-            </h1>
+            <!-- العنوان الصادم -->
+            <h1>هل أنتِ متأكدة من <span class="danger-highlight">أرباحك</span>؟ 🤔</h1>
 
-            <p>لا تتركي أرباحك تتسرب عبر "التكاليف الخفية".<br>
-                <strong style="color:white; font-weight:600;">CostCrafter Pro</strong> هو محاسبكِ الشخصي الذي يضمن لكِ
-                حقكِ بالدينار، ويحمي مجهودك من الضياع.
+            <p>في <strong style="color: var(--accent); font-weight:700;">60 ثانية فقط</strong>، ستكتشفين كم تخسرين على
+                كل ورقة طباعة...<br>
+                <span style="font-size: 1.5rem;">مجاناً تماماً! 🎁</span>
             </p>
 
             <div class="hero-btns">
-                <a href="#pricing" class="btn-primary-lg">
-                    أوقفي الخسارة وابدئي الربح الآن
-                    <i class="fa-solid fa-arrow-left"></i>
+                <a href="#" class="btn-primary-lg" onclick="startChallenge(); return false;">
+                    ابدأ تحدي التسعير الآن
+                    <i class="fa-solid fa-robot"></i>
                 </a>
                 <a href="#video-demo" class="btn-secondary-lg">
-                    كيف يسرقون جهدك؟ (فيديو)
+                    شاهدي كيف تختفي أرباحك
                     <i class="fa-solid fa-play"></i>
                 </a>
             </div>
@@ -787,20 +786,16 @@
             <div id="video-demo" class="video-container">
                 <div class="video-wrapper">
                     <video controls poster="" style="box-shadow: 0 0 50px rgba(49, 11, 130, 0.5);">
-                        <source src="../video_costcrafter.mp4" type="video/mp4">
+                        <source src="videos/video_costcrafter.mp4" type="video/mp4">
                         المتصفح لا يدعم الفيديو.
                     </video>
                 </div>
             </div>
-            <div
-                style="margin-top: 15px; font-size: 0.95rem; color: var(--text-muted); display:flex; gap:20px; justify-content:center; align-items:center;">
-                <span><i class="fa-solid fa-shield-halved" style="color:var(--accent)"></i> ضمان استعادة المال</span>
-                <span><i class="fa-solid fa-users" style="color:var(--accent)"></i> انضمي لـ +500 حرفية ناجحة</span>
-            </div>
+
         </div>
     </section>
 
-    <!-- Pain Points (The Problem) -->
+    <!-- Pain Points (وهم الربح) -->
     <section class="section" style="position: relative;">
         <!-- Background element for visual interest -->
         <div
@@ -808,72 +803,167 @@
         </div>
 
         <div class="container">
-            <h2 class="section-title"><span>لماذا تخسرين المال دون أن تشعري؟</span> 💸</h2>
+            <h2 class="section-title"><span>تبيعين كثيراً... لكن جيبك فارغ آخر الشهر؟</span> 💸</h2>
+            <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: -2rem auto 3rem;">
+                هذه ليست مصادفة... هناك "لصوص صامتون" يسرقون أرباحك دون أن تشعري:
+            </p>
             <div class="pain-grid">
                 <div class="pain-card">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <h3>التسعير العاطفي</h3>
-                    <p>هل تبيعين بسعر "رخيص" خوفاً من خسارة الزبون؟ هذه هي أسرع طريقة للإفلاس.</p>
-                </div>
-                <div class="pain-card">
                     <i class="fa-solid fa-print"></i>
-                    <h3>"فخ" الطابعة</h3>
-                    <p>الطابعة التي اشتريتها بـ 4 ملايين، هل تحسبين "حقها" في كل ورقة؟ أم أنها هدية للزبون؟</p>
+                    <h3>"فخ" الطابعة 🪤</h3>
+                    <p>الطابعة التي اشتريتها بـ <strong>4 ملايين</strong>، هل تحسبين "حقها" في كل ورقة؟ أم أنها هدية
+                        مجانية للزبون؟</p>
                 </div>
                 <div class="pain-card">
-                    <i class="fa-solid fa-trash-can"></i>
-                    <h3>الهدر الخفي</h3>
-                    <p>الورقة التي تطبعينها خطأً، والحبر الذي يجف... من يدفع ثمنه؟ (أنتِ!)</p>
+                    <i class="fa-solid fa-palette"></i>
+                    <h3>الحبر الملون 🎨</h3>
+                    <p>صورة واحدة ملونة تستهلك <strong>أضعاف</strong> الحبر الأسود... من يدفع هذا الفرق الكبير؟ (أنتِ!)
+                    </p>
                 </div>
                 <div class="pain-card">
-                    <i class="fa-solid fa-clock"></i>
-                    <h3>وقتكِ = 0 دج؟</h3>
-                    <p>تقضين 3 ساعات في التصميم والقص، ثم لا تحسبين أجرك؟ أنتِ موظفة مجانية!</p>
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <h3>"وهم" الربح 💭</h3>
+                    <p>تعتقدين أنك تربحين <strong>50 دج</strong> على الورقة؟ التحدي سيكشف لك الحقيقة المرة!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features (The Solution) -->
+    <!-- كيف يعمل التحدي؟ (3 خطوات) -->
+    <section class="section" style="background: rgba(0,0,0,0.1);">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:3rem;">
+                <span
+                    style="background:rgba(238, 179, 42, 0.1); color:var(--accent); padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.9rem;">مجاني
+                    100%</span>
+                <h2 class="section-title" style="margin-top:15px; margin-bottom:1rem;">كيف يعمل تحدي التسعير؟ 🤖</h2>
+                <p style="color:var(--text-muted); max-width:600px; margin:0 auto;">في أقل من دقيقة، سيكشف لكِ البوت
+                    الذكي الحقيقة المخفية عن أرباحك</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h3>سؤال واحد لتحدي ذكائك 🧠</h3>
+                    <p>البوت سيسألك سؤالاً واحداً: "بكم تحسبين تكلفة الورقة عليك؟" أعطيه رقمك التقريبي.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h3>نحسب تكاليفك الخفية</h3>
+                    <p>نُدخل عوامل لا تفكرين فيها: إهلاك الآلة، فرق حبر الصور، نسبة الهدر</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h3>تحصلين على النتيجة</h3>
+                    <p>تكتشفين الحقيقة: هل مشروعك مربح أم أنكِ تعملين بالمجان؟ 😱</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+
+    <!-- Features (الحل - CostCrafter Pro) -->
     <section id="features" class="section">
         <div class="container">
             <div style="text-align:center; margin-bottom:3rem;">
                 <span
                     style="background:rgba(238, 179, 42, 0.1); color:var(--accent); padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.9rem;">الحل
                     الجذري</span>
-                <h2 class="section-title" style="margin-top:15px; margin-bottom:1rem;">CostCrafter: ليس مجرد برنامج.. هو
-                    شريكك المالي 💎</h2>
-                <p style="color:var(--text-muted); max-width:600px; margin:0 auto;">حولنا قواعد "محاسبة الشركات الكبرى"
-                    إلى برنامج بسيط يفهمه أي شخص.</p>
+                <h2 class="section-title" style="margin-top:15px; margin-bottom:1rem;">CostCrafter Pro: الشريك الذي يغلق
+                    ثغرات الخسارة 💎</h2>
+                <p style="color:var(--text-muted); max-width:700px; margin:0 auto;">بعد أن تكتشفي خسارتك، لا تتركيها
+                    تتكرر! هذا البرنامج يحمي كل دينار تستحقينه.</p>
             </div>
 
             <div class="features-grid">
                 <!-- Highlighted Feature -->
                 <div class="feature-card highlight-card">
-                    <i class="fa-solid fa-calculator"></i>
+                    <i class="fa-solid fa-industry"></i>
+                    <h3>المنطق الصناعي (Industrial Logic)</h3>
+                    <p>نفس الحسابات التي تستخدمها المصانع الكبرى لتسعير منتجاتها... الآن بين يديكِ!</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-droplet"></i>
                     <h3>خوارزمية الحبر الذكية</h3>
-                    <p>البرنامج الوحيد الذي يحسب "قطرة الحبر" بدقة حسب نوع التصميم (صورة ملونة vs نص أسود). لن تخسري
-                        فلساً واحداً!</p>
+                    <p>البرنامج الوحيد الذي يفرق بين تكلفة الصورة الملونة والنص الأسود تلقائياً.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-piggy-bank"></i>
-                    <h3>حاسبة الإهلاك (Amortization)</h3>
-                    <p>نقسم سعر الطابعة والمقص الحراري على عدد السنوات، ونضيف "قسطاً صغيراً" لكل منتج تبيعينه.</p>
+                    <i class="fa-solid fa-calculator"></i>
+                    <h3>حاسبة الإهلاك</h3>
+                    <p>نقسم قيمة طابعتك ومقصك على كل منتج تبيعينه. لن تهدي معداتك للزبائن بعد اليوم!</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-boxes-stacked"></i>
-                    <h3>مخزنكِ تحت السيطرة</h3>
-                    <p>تنبيهات أوتوماتيكية قبل نفاذ الورق أو الحبر. لن تتوقفي عن العمل في منتصف الطلبية أبداً.</p>
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h3>تقارير فورية</h3>
+                    <p>اعرفي ربحك الحقيقي قبل أن تُسعّري. لا مفاجآت آخر الشهر!</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-tags"></i>
-                    <h3>تسعير المنتجات المتكررة</h3>
-                    <p>هل تبيعين "بلانر" أو "ستيكرز"؟ احسبي التكلفة مرة واحدة، وبيعي آلاف المرات بربح مضمون.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof - شهادات العملاء -->
+    <section class="section" style="background: rgba(0,0,0,0.15);">
+        <div class="container">
+            <h2 class="section-title"><span>اكتشفوا خسارتهم... وغيروا مسار مشاريعهم</span> 💬</h2>
+            <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: -2rem auto 3rem;">
+                حرفيات من الجزائر جربوا "تحدي التسعير" وهذا ما اكتشفوه:
+            </p>
+
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="feature-card" style="border-right: 4px solid var(--accent);">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">😱</div>
+                    <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                        "جربت تحدي التسعير ظناً أني أربح... اكتشفت أني أخسر <strong style="color: var(--danger);">15
+                            دج</strong> على كل ورقة A4! CostCrafter أنقذ مشروعي."
+                    </p>
+                    <div
+                        style="display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">
+                            س</div>
+                        <div>
+                            <strong>سارة م.</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">صاحبة مشروع طباعة، وهران</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <h3>يعمل بدون إنترنت</h3>
-                    <p>بياناتكِ، أرباحكِ، وتفاصيل زبائنكِ محفوظة في جهازك الشخصي بأمان تام 100%.</p>
+
+                <div class="feature-card" style="border-right: 4px solid var(--accent);">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🎨</div>
+                    <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                        "كنت أحسب الحبر غلط تماماً. البوت كشف لي أن تكلفة الصورة الملونة <strong
+                            style="color: var(--danger);">ضعف</strong> ما كنت أظن!"
+                    </p>
+                    <div
+                        style="display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">
+                            ن</div>
+                        <div>
+                            <strong>نورهان ب.</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">حرفية stickers، العاصمة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card" style="border-right: 4px solid var(--accent);">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">📈</div>
+                    <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">
+                        "بعد التحدي، رفعت أسعاري <strong style="color: var(--success);">20%</strong> والزبائن ما لاحظوا.
+                        هذا الفرق كان يروح في جيب غيري!"
+                    </p>
+                    <div
+                        style="display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">
+                            أ</div>
+                        <div>
+                            <strong>أمينة ط.</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">مصممة planners، قسنطينة</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -937,11 +1027,10 @@
                     </div>
                 </div>
 
-                <button data-tally-open="OD7dlA" data-tally-layout="modal" data-tally-overlay="1"
-                    data-tally-emoji-text="👋" data-tally-emoji-animation="wave" class="btn-primary-lg"
+                <button onclick="startChallenge()" class="btn-primary-lg"
                     style="width:100%; justify-content:center; margin-top:30px; border:none; cursor:pointer; font-size:1.4rem; padding:1.2rem;">
                     احجزي نسختك الآن
-                    <i class="fa-solid fa-rocket"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
                 </button>
             </div>
         </div>
@@ -1003,12 +1092,67 @@
         </div>
     </footer>
 
-    <!-- Floating Telegram Button -->
-    <a href="https://t.me/NawaSupport" class="floating-btn" target="_blank">
-        <i class="fa-brands fa-telegram"></i>
-    </a>
 
-    <!-- Simple JS for FAQ -->
+
+    <style>
+        /* Typebot Floating Button Styles */
+        .typebot-floating-btn {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--accent), #ffcd57);
+            color: var(--primary);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(238, 179, 42, 0.5);
+            z-index: 1001;
+            animation: pulse-gold 2s infinite, bounce-in 0.5s ease-out;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .typebot-floating-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 35px rgba(238, 179, 42, 0.7);
+        }
+
+        .typebot-floating-btn i {
+            font-size: 1.3rem;
+        }
+
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0) translateY(50px);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.1) translateY(-5px);
+            }
+
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .typebot-floating-btn {
+                bottom: 80px;
+                left: 15px;
+                right: 15px;
+                justify-content: center;
+                font-size: 0.95rem;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+
     <!-- Chatwoot SDK -->
     <script>
         (function (d, t) {
@@ -1025,7 +1169,9 @@
             }
         })(document, "script");
     </script>
+
     <script>
+        // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(item => {
             item.addEventListener('click', () => {
                 const parent = item.parentElement;
@@ -1033,16 +1179,32 @@
             });
         });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scroll for anchor links (excluding Typebot triggers)
+        document.querySelectorAll('a[href^="#"]:not([onclick])').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             });
         });
+
+        // Challenge Function - Opens Chatwoot
+        function startChallenge() {
+            if (window.$chatwoot) {
+                window.$chatwoot.toggle('open');
+            } else {
+                console.error("Chatwoot SDK not loaded yet");
+            }
+        }
     </script>
+
 </body>
 
 </html>
